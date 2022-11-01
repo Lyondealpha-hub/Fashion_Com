@@ -1,0 +1,44 @@
+.navbar{
+    background-color: #fff;
+    box-shadow: 2px 2px 25px rgb(239, 241, 239);
+    height: 95px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.nav-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 90%;
+    margin: auto;
+}
+.brand{
+    display: flex;
+    align-items: center;
+}
+.brand i{
+    color:rgb(18, 168, 18);
+    font-size: 22.5px;
+    padding-right: 7.5px;
+}
+.brand-link{
+    color: rgb(18, 168, 18);
+    font-size: 33px;
+    text-decoration: none;
+    font-weight: 500;
+}
+.navbar-btn-item{
+    color: rgb(18, 168, 18);
+    font-weight: 700;
+    font-size: 22px;
+    padding: 18px;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 2px solid rgb(216, 221, 216);
+}
+.navbar-btn-item:hover{
+    border-color: rgb(173, 241, 173);
+}

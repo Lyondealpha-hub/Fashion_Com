@@ -1,0 +1,13 @@
+/* for message box */
+.msg{
+    background-color: white;
+    margin-bottom: 15px;
+}
+.success{
+    color: green;
+    font-size: 18px;
+}
+.error{
+    color: red;
+    font-size: 25px;
+}

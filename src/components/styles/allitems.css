@@ -1,0 +1,139 @@
+.all-items{
+    padding-top: 120px;
+    padding-bottom: 50px;
+}
+.search{
+    width: 70%;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.bmessage{
+    color: #555;
+}
+.search input{
+    height: 50px;
+    width: 77%;
+    padding: 0 20px;
+    border: none;
+    border: 2px solid rgb(197, 201, 198);
+    font-size: 17px;
+    border-radius: 5px;
+}
+.search input:hover,.search input:focus{
+    outline: none;
+    border-color: rgb(178, 243, 178);
+}
+.search-link{
+    width: 20%;
+    text-decoration: none;
+    font-size: 20px;
+    height: 50px;
+    background-color: rgb(18, 180, 18);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+.search-link:hover{
+    background-color: rgb(19, 211, 19);
+}
+.search-link i{
+    padding-right: 5px;
+}
+.bi-caret-right-fill{
+    padding-left: 6px;
+}
+.items-table{
+    width: 80%;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+.items-table h1{
+    padding-top: 30px;
+    font-weight: lighter;
+    color: #333;
+    font-weight: 400;
+    font-size: 40px;
+    transition: 0.4s;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+th{
+    background-color: rgb(180, 243, 180);
+    height: 60px;
+    font-size: 19px;
+    color: rgb(81, 83, 81);
+    padding: 0 18px;
+}
+tr:nth-child(odd){
+    background-color: rgb(244, 248, 244);
+    padding: 0 12px;
+}
+td{
+    border: 1px solid rgb(207, 204, 204);
+    padding: 12.5px 10px;
+    font-size: 18px;
+    color: #333;
+}
+.left{
+    padding-left: 5px;
+}
+.align-center{
+    text-align: center;
+}
+.td-action{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.action{
+    padding-right: 3px;
+    padding-left: 3px;
+}
+.td-action-link{
+    width: 48%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    border-radius: 3px;
+}
+.edit{
+    background-color: rgb(213, 213, 252);
+}
+.edit:hover{
+    opacity: 0.7;
+}
+.bi-pencil-fill{
+    color: rgb(35, 35, 179);
+}
+.delete{
+    background-color: rgb(248, 226, 226);
+}
+.delete:hover{
+    opacity: 0.6;
+}
+.bi-trash3-fill{
+    color: rgb(241, 8, 8);
+}
+.learn-more-holder{
+    text-align: center;
+}
+.learn-more{
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    background-color: rgb(13, 165, 13);
+    padding: 12px 9px;
+    border-radius: 4px;
+}
+.learn-more:hover{
+    opacity: 0.7;
+}

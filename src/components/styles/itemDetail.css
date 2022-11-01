@@ -1,0 +1,12 @@
+.item-detail{
+    padding-top: 120px;
+    margin-bottom: 30px;
+    background-color: blue;
+}
+.head{
+    font-size: 22px;
+}
+.body{
+    font-size: 19px;
+    color: #555;
+}
