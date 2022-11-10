@@ -11,6 +11,28 @@ const initialState : mainState = {
     Orderitem : [],
 }
 
+// delete an item object
+
+const handleDelete = (old_state:any, cart_del:any)=>{
+    
+    for(let deleted = 0; deleted < old_state.length; deleted++){
+        let temparr:any = []
+        if([old_state[deleted]].findIndex !== cart_del.id){
+
+            console.log([old_state[deleted]]);
+            
+           return temparr.push(old_state[deleted])
+            
+            
+            
+            // old_state(()=>{
+            //     [old_state[deleted]][0].filter(cart_del)
+            // })
+            // [old_state[deleted]][0].filter(cart_del)
+        }
+    }
+}
+
 // checking for duplicate data 
 
 const checker = (old_state:any, cart_new:any)=>{
@@ -18,17 +40,16 @@ const checker = (old_state:any, cart_new:any)=>{
 
     for(var duplicate = 0; duplicate < old_state.length; duplicate++){
         
-        if(old_state[duplicate].id === cart_new.id){
+        if([old_state[duplicate]][0].id === cart_new.id){
             return true
-
-        }else{
-            return(false)
+            // console.log("fuck its a duplicate item");
+            
         }
 
         
     }
 
-    
+    return(false)
 }
 
 
@@ -45,15 +66,13 @@ export const cartSlice = createSlice({
             
             // console.log(JSON.parse(JSON.stringify(state)));
         
-            if(checking){
-                
+            if(checking === true){                
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Item Already added to cart!',
+                    text: 'Item Already Exists!!',
                     footer: '<a href="">Why do I have this issue?</a>'
-                  })  
-                
+                  }) 
             }else{
                 console.log('Added');
                 state.Orderitem.push(item.payload)
@@ -61,6 +80,15 @@ export const cartSlice = createSlice({
                 // incrementing the cart icon by number of items
                 state.notification += 1
 
+                
+                Swal.fire({
+                    position: 'top',
+                    icon: 'success',
+                    title: 'Added to cart Successfully!!',
+                    showConfirmButton: false,
+                    timer: 1500
+                 })
+            
             }
             
             
@@ -69,10 +97,33 @@ export const cartSlice = createSlice({
 
             
             
+        },
+        deleteItem : (state, item) =>{
+
+            console.log("dellll");
+            
+            
+              var arrupdate =  handleDelete(JSON.parse(JSON.stringify(state.Orderitem)),item.payload);
+            
+                
+                    if (arrupdate == true) {
+                        state.Orderitem = [arrupdate] 
+                      Swal.fire(
+                        'Deleted!',
+                        'Your Cart item has been deleted.',
+                        'success'
+                      )
+                      state.notification -= 1
+                    }
+                
+                  
+            
         }
+            
+        
     }
 })
 
-export const {clickedViewedItem} = cartSlice.actions;
+export const {clickedViewedItem, deleteItem} = cartSlice.actions;
 export default cartSlice.reducer;
 

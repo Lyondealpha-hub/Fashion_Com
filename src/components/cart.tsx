@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { itemsInterface, AddToCart_btn, mainState } from '../Interfaces/interface';
 import axios from 'axios';
 import { useSelector,useDispatch } from "react-redux";
-import { clickedViewedItem } from '../features/Carthook';
+import { clickedViewedItem, deleteItem } from '../features/Carthook';
 import { RootState } from '../app/store';
 import Swal from "sweetalert2";
 
@@ -33,18 +33,20 @@ const Cart = ()=>{
     const test = (item:itemsInterface,isclicked:boolean) => {
         if(isclicked == true){
             dispatch(clickedViewedItem(item))
+            
             // console.log("This is for the redux watch bellow");
         
             // console.log(view);
+        }
+    }
 
-            Swal.fire({
-                position: 'top',
-                icon: 'success',
-                title: 'Added to cart Successfully!!',
-                showConfirmButton: false,
-                timer: 1500
-              })
+    const del = (item:itemsInterface,isclicked:boolean) => {
+        if(isclicked == true){
             
+            dispatch(deleteItem(item))
+            // console.log("This is for the redux watch bellow");
+        
+            // console.log(view);
         }
     }
     
@@ -65,25 +67,30 @@ const Cart = ()=>{
    const navigate = useNavigate()
 
     const [quantity, setQuantity] = useState<number>(1)
-    const [price, setPrice] = useState<number>(20)
+    const [price, setPrice] = useState<number>(0)
     const [total, setTotal] = useState<number>(0)
 
     const TotalPrice = (price:number, add: boolean) : void =>{
         if(add === true){
-            setTotal(quantity * price)
+            let count = quantity + 1
+            setTotal(count * price)
+        }else{
+            let count = quantity - 1
+            setTotal(count * price)
         }
     }
 
 
-    const handleDelete =(item:itemsInterface, isclicked:boolean)=>{
-        if(isclicked == true){
-           view(view.filter((item:any)=>{
-                return item.id != item
-            }))
-        }
+    // const handleDelete =(item:itemsInterface, isclicked:boolean)=>{
+        
+    //     if(isclicked == true){
+    //        view(item.filter((item:any)=>{
+    //             return item.id != item
+    //         }))
+    //     }
         
 
-    }
+    // }
 
     // const addTocart = (id:itemsInterface):void =>{
     //     axios.get(`http://localhost:3001/products/${id}`).
@@ -107,17 +114,18 @@ const Cart = ()=>{
                     <div className="w-full h-3/6 shadow-2xl flex flex-row">
 
                 <div className="w-2/5 h-full bg-white border-r-2 border-black flex flex-row self-center justify-center items-center pb-6">
-                        <img className="w-3/6" src={item.url} />
+                        <img className="w-3/6 h-full" src={item.url} />
 
 
                 </div>
 
 
                 <div className="w-3/5 h-full  list-none justify-between flex flex-col p-6 ">
-                    <li className="text-start "><h1 className="text-2xl justify-center items-center ">Item Name</h1>{item.title}</li>
-                    <li className="text-start "><h1 className="text-2xl justify-center items-center">Item Code</h1>{item.id}</li>
-                    <li className="text-start "><h1 className="text-2xl justify-center items-center">Item Description</h1>{item.description}</li>
-                    <li className="text-start "><h1 className="text-2xl justify-center items-center">Item Price</h1>{item.price}</li>
+                    <h1 className="font-bold text-4xl italic pb-3">Items Details</h1>
+                    <li className="text-start "><h1 className="text-2xl font-bold justify-center items-center ">Item Name</h1>{item.title}</li>
+                    <li className="text-start "><h1 className="text-2xl font-bold justify-center items-center">Item Code</h1>{item.id}</li>
+                    <li className="text-start "><h1 className="text-2xl font-bold justify-center items-center">Item Description</h1>{item.description}</li>
+                    <li className="text-start "><h1 className="text-2xl font-bold justify-center items-center">Item Price</h1>{item.price}</li>
                     <li className="text-end "><button className='m-0 h-14 self-center border-2  px-6 bg-gray-400 rounded-r-full hover:bg-sky-500 cursor-pointer' onClick={()=>{test(item,true)}} type="button">Add to cart</button></li>
                 </div>
 
@@ -141,8 +149,10 @@ const Cart = ()=>{
 
                     <tbody>
                         {view.map((item:any)=>{
+                            
+                            
                             return(
-                                <tr>
+                        <tr key={view.id}>
                             <td><li className=" list-none self-center justify-center content-center"><img className="w-20  " src={item.url} /></li></td>
                             <td>{item.title}</td>
                             <td>{item.description}</td>
@@ -150,12 +160,12 @@ const Cart = ()=>{
                                 <div className="flex flex-row w-full rounded-2xl outline-none border-none">
                                     <div className="w-2/6 h-12  border-2 bg-slate-400 "> <button onClick={()=>{setQuantity(quantity + 1 ); TotalPrice(item.price, true)}} type="button" className="w-full text-2xl self-center">+</button></div>
                                     <div className="w-2/6 h-full  self-center"> <h1>{quantity}</h1> </div>
-                                    <div className="w-2/6 h-12 border-2 bg-slate-400"><button onClick={()=>{setQuantity(quantity - 1)}} className="w-full text-2xl self-center">-</button></div>
+                                    <div className="w-2/6 h-12 border-2 bg-slate-400"><button onClick={()=>{setQuantity(quantity - 1);TotalPrice(item.price, false)}} className="w-full text-2xl self-center">-</button></div>
                                 </div>
                             </td>
-                            <td>{item.price}</td>
+                            <td><div onChange={()=>{setPrice(item.price)}}>{item.price}</div></td>
                             <td>{total}</td>
-                            <td><li onClick={()=>{handleDelete(view, true)}} className=" w-full list-none  flex justify-center"><MdDelete   size={25}/></li></td>
+                            <td><li  onClick={()=>{del(item,true)}} className=" w-full list-none  flex justify-center "><MdDelete className="hover:bg-red-600 rounded-full cursor-pointer" color="#000 "  size={45}/></li></td>
                         </tr>
                             )
                         })}

@@ -5,11 +5,17 @@ import land from '../pics/land.webp';
 
 
 
+
+
 const LandingPage = ()=>{
+
+    
+
     return(
         // Main container
 
         <div className="w-full inline-flex justify-between h-full">
+            
             {/* left container */}
 
             <div className="h-full w-1/4 shadow-2xl p-4 ml-4 ">

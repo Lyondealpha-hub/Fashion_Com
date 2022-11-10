@@ -4,12 +4,15 @@ import Navbar from "../components/navbar";
 import React, { useState, useEffect } from "react";
 import { itemsInterface } from '../Interfaces/interface';
 import axios from "axios";
+import SearchModal from "../components/searchModal";
+
 
 
 
 
 
 const User = () =>{
+    
 
     const [products, setProducts] = useState<itemsInterface[]>([])
 
@@ -37,8 +40,9 @@ const User = () =>{
     // ])
 
     return(
-        <div>
-            <Navbar />
+        <div className="w-full h-full">
+            <Navbar products={products} />
+            
             <LandingPage />
 
             {/* I will work on this more later */}
