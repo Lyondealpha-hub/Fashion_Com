@@ -17,6 +17,7 @@ const DashboardPage = ()=>{
     const [title, setTitle] = useState<string>('')
     const [price, setprice] = useState<string>("")
     const [description, setDescription] = useState<string>("") 
+    const [itemCate, setitemCate] = useState<string>('')
 
     // Image Preview Loader
     const convertfile=(files : FileList | null) => {
@@ -45,6 +46,7 @@ const DashboardPage = ()=>{
             description: description,
             price: price,
             url:imagePreview,
+            itemCate : itemCate,
         })
 
         
@@ -67,7 +69,7 @@ const DashboardPage = ()=>{
     return(
         // Main container
 
-        <div className="w-full inline-flex justify-between h-full">
+        <div className="mt-40 w-full inline-flex justify-between h-full">
             {/* left top container */}
 
             <div className="h-full w-1/4 shadow-2xl p-4 ml-4 ">
@@ -118,6 +120,16 @@ const DashboardPage = ()=>{
                                 <li className='my-4 pb-6 text-xl flex flex-row items-center pr-4 hover:text-sky-500 cursor-pointer'><input className='italic h-12 p-3 pr-8 self-center ml-4 w-11/12  border-b-2 focus-visible:border-b-sky-500 border-4 rounded-l-full outline-0' type='text' placeholder='Description' onChange={(e)=>{setDescription(e.target.value)}} /></li>
                                 <li className='my-4 pb-6 text-xl flex flex-row items-center pr-4 hover:text-sky-500 cursor-pointer'><input className='italic h-12 p-3 pr-8 self-center ml-4 w-11/12  border-b-2 focus-visible:border-b-sky-500 border-4 rounded-l-full outline-0' type='text' placeholder='Price' onChange={(e)=>{setprice(e.target.value)}} /></li>
                                 
+                                <select onChange={(e)=>{setitemCate(e.target.value)}} style={{ padding: '8px 12px',fontSize:'18px',marginLeft:'15px',borderRadius:'none'}}>
+                                        <option  value='Item Category'>Select Item Category</option>
+                                        <option value='Home and Garden'>Home and Garden</option>
+                                        <option  value='Fashion'>Fashion</option>
+                                        <option value='Phones'>Phones</option>
+                                        <option value='Electronics'>Electronics</option>
+                                        <option value='Books'>Books</option>
+                                        <option value='Baby Toys'>Electronics</option>
+                                        <option value='Pets'>Pets</option>
+                                    </select>
                                 
                             </div>
                         </form>
@@ -138,6 +150,8 @@ const DashboardPage = ()=>{
                                 <li className='font-bold flex'>Title : <h1 className='font-light'>{title}</h1> </li>
                                 <li className='font-bold flex py-2 '>Description : <h1 className='font-light'>{description}</h1></li>
                                 <li className='font-bold flex'>Price : <h1 className='font-light'>{price}</h1></li>
+                                <li className='font-bold flex'>ItemCategory : <h1 className='font-light'>{itemCate}</h1></li>
+                                <li></li>
                                 <li></li>
                             </ul>
                         </ul>
